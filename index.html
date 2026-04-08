@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Cors test</title>
+    <script defer src="./main.js"></script>
+</head>
+<body>
+    <main>
+        <section>
+            <form action='/' method='POST'>
+                <label for='method'>Select the target method:</label>
+                <select name='method' id='method'>
+                    <option value='get' selected='selected'>GET</option>
+                    <option value='delete'>DELETE</option>
+                    <option value='post'>POST</option>
+                    <option value='put'>PUT</option>
+                    <option value='patch'>PATCH</option>
+                </select>
+                <label> Enter the target URL
+                    <input type='text' id='url' name='url' value='xxx' placeholder='http://www.api.com' required/>
+                </label>
+                <label for='body'>Enter the JSON body:</label>
+                <textarea id='body' name='body' placeholder='JSON body'>ttt</textarea>
+                <button id='submit' type='button'>Submit</button>
+            </form>
+                <label for='request'>Request:</label>
+                <textarea id='request' name='submit'></textarea>
+                <label for='response'>Response:</label>
+                <textarea id='response' name='response'></textarea>
+        </section>
+    </main>
+</body>
+</html>
