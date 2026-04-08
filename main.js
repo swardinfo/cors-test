@@ -10,11 +10,13 @@
 
       if (requestMethod.value === "get" || requestMethod.value === "delete") {
         request = new Request(requestUrl.value, {
-          method: requestMethod.value
+          method: requestMethod.value,
+          mode: 'cors'
         });
       } else {
           request = new Request(requestUrl.value, {
           method: requestMethod.value,
+          mode: 'cors',
           body: JSON.stringify(requestBody.value)
         });
       }
