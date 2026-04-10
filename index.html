@@ -10,7 +10,9 @@
 <body>
     <main>
         <section>
+            <h1>Cors Test</h1>
             <form action='/' method='POST'>
+                <h2>Request</h2>
                 <label for='method'>Select the target method:</label>
                 <select name='method' id='method'>
                     <option value='get' selected='selected'>GET</option>
@@ -22,14 +24,25 @@
                 <label> Enter the target URL
                     <input type='text' id='url' name='url' value='http://localhost:3000/api' placeholder='http://www.api.com' required/>
                 </label>
-                <label for='body'>Enter the JSON body:</label>
-                <textarea id='body' name='body' placeholder='JSON body'>ttt</textarea>
+                <p>Headers</p>
+                <p>Add additional headers each on a single line in form of "header-name": "header-value"</p>
+                <p>Any text after a # is a comment which is ignored</p>
+                <p>Some example headers are shown. Remove leading # to make active.</p>
+                <p>Values shown are defaults if left inactive</p>
+                <p>Some options for these are shown, more may exist</p>
+                <p>Note: content-type is removed for GET and DELETE methods</p>
+                <p>and is set to application/json by default for other methods if not set here</p>
+                <label for='headers'>Add additional headers</label>
+                <textarea id='headers' name='headers' class='short'></textarea>
+                <label for='body'>Enter the JSON body: not used with GET or DELETE</label>
+                <textarea id='body' name='body' placeholder='JSON body' class='dimmed tall'></textarea>
                 <button id='submit' type='button'>Submit</button>
             </form>
-                <label for='request'>Request:</label>
-                <textarea id='request' name='submit'></textarea>
-                <label for='response'>Response:</label>
-                <textarea id='response' name='response'></textarea>
+            <label for='request'>Request sent:</label>
+            <textarea id='request' name='submit' class='extra-tall'></textarea>
+            <h2>Response</h2>
+            <label for='response'>Response returned:</label>
+            <textarea id='response' name='response' class='extra-tall'></textarea>
         </section>
     </main>
 </body>
