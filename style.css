@@ -8,6 +8,19 @@
     font-weight: normal;
 }
 
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+p:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
 main {
     width: 80vw;
     margin: 0 auto;
@@ -39,6 +52,18 @@ label {
 }
 
 textarea {
+    height: 10rem;
+}
+
+.short {
+    height: 8rem;
+}
+
+.tall {
+    height: 15rem;
+}
+
+.extra-tall {
     height: 20rem;
 }
 
@@ -52,4 +77,9 @@ textarea {
 button {
     padding-left: 2px;
     padding-right: 2px;
+}
+
+.dimmed {
+    color: #a0a0a0;
+    border-color: #a0a0a0;
 }
