@@ -46,7 +46,7 @@ window.addEventListener('load', () => {
         headers.delete("content-type");
       }
       return new Request(url, {
-        method: method,
+        method: method.toUpperCase(),
         headers: headers
       });
     }
@@ -54,7 +54,7 @@ window.addEventListener('load', () => {
       headers.append("content-type", "application/json");
     }
     return new Request(url, {
-      method: method,
+      method: method.toUpperCase(),
       headers: headers,
       body: JSON.parse(JSON.stringify(body))
     });
