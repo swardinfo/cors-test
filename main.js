@@ -10,10 +10,10 @@ window.addEventListener('load', () => {
     if ( headerText.value === "") {
       headerText.value = '# "mode": "cors" # Accepted values cors, no-cors, same-origin' + '\n'
              + '# "Access-Control-Allow-Origin": "*" # e.g. http://www.example.com' + '\n'
-             + '# "Authorization": "none"' + '\n'
+             + '# "Authorization": "Bearer "' + '\n'
     }
     if ( requestBody.value === "") {
-      requestBody.value = '{\n  "name": "Stephen"\n}'
+      requestBody.value = '{\n  "username": "myTeacher1",\n  "password": "StrongPassword123"\n}'
     }
 }, {once: true});
 
@@ -36,22 +36,22 @@ window.addEventListener('load', () => {
     } catch (error) {
       responseText.value = error.message;
     }
+
   });
 
-  function getRequest(method, url, headers = null, body = "") {
+  function getRequest(method, url, headers = {}, body = "") {
     method = method.toLowerCase()
-    if (headers === null) { headers = new Headers}
     if (method === "get" || method === "delete") {
-      if (headers.has("content-type")) {
-        headers.delete("content-type");
+      if ("content-type" in headers) {
+        delete headers['content-type']
       }
       return new Request(url, {
         method: method.toUpperCase(),
         headers: headers
       });
     }
-    if (!headers.has("content-type")) {
-      headers.append("content-type", "application/json");
+    if (!("content-type" in headers)) {
+      headers["content-type"] = "application/json"
     }
     return new Request(url, {
       method: method.toUpperCase(),
@@ -62,7 +62,7 @@ window.addEventListener('load', () => {
 
   function getHeaders(headerText) {
     const headerLines = headerText.split('\n');
-    const headers = new Headers();
+    const headers = {};
     if (headerLines)
     for (const line of headerLines) {
       if (line.startsWith("#")) { continue }
@@ -71,13 +71,13 @@ window.addEventListener('load', () => {
       parts = header.split(':');
       if (parts.length !== 2) { continue }
 
-      parts[0] = parts[0].trim()
+      parts[0] = parts[0].trim().toLowerCase()
       parts[1] = parts[1].trim()
       if (!parts[0].startsWith('"') || !parts[0].endsWith('"') || !parts[1].startsWith('"') || !parts[1].endsWith('"')) { continue}
-      parts[0] = parts[0].replaceAll('"', '').toLowerCase()
-      parts[1] = parts[1].replaceAll('"', '').toLowerCase()
+      parts[0] = parts[0].replaceAll('"', '')
+      parts[1] = parts[1].replaceAll('"', '')
       if (parts[0] === "" || parts[1] === "") {return}
-      headers.append(parts[0], parts[1]);
+      headers[parts[0]] = parts[1]
     }
     return headers;
   }
